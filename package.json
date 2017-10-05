@@ -1,65 +1,80 @@
 {
-    "name": "collections-viewer-electron-app",
-    "productName": "collections-viewer-electron-app",
-    "version": "1.0.0",
-    "description": "Touchscreen application built in electron, used to access and display online collections.",
-    "main": "src/index.js",
-    "scripts": {
-        "start": "electron-forge start",
-        "package": "electron-forge package",
-        "make": "electron-forge make",
-        "publish": "electron-forge publish",
-        "lint": "echo \"No linting configured\""
-    },
-    "keywords": [],
-    "author": "Michael Mason <mmason@museum.vic.gov.au>",
-    "license": "MIT",
-    "config": {
-        "forge": {
-            "make_targets": {
-                "win32": [
-                    "squirrel"
-                ],
-                "darwin": [
-                    "zip"
-                ],
-                "linux": [
-                    "deb",
-                    "rpm"
-                ]
-            },
-            "electronPackagerConfig": {
-                "packageManager": "yarn"
-            },
-            "electronWinstallerConfig": {
-                "name": "collections_viewer_electron_app"
-            },
-            "electronInstallerDebian": {},
-            "electronInstallerRedhat": {},
-            "github_repository": {
-                "owner": "",
-                "name": ""
-            },
-            "windowsStoreConfig": {
-                "packageName": "",
-                "name": "collectionsviewerelectronapp"
-            }
-        }
-    },
-    "dependencies": {
-        "electron-compile": "^6.4.2",
-        "electron-devtools-installer": "^2.1.0",
-        "electron-squirrel-startup": "^1.0.0",
-        "react": "^15.4.1",
-        "react-dom": "^15.4.1",
-        "react-hot-loader": "^3.0.0-beta.6"
-    },
-    "devDependencies": {
-        "babel-plugin-transform-async-to-generator": "^6.24.1",
-        "babel-plugin-transform-es2015-classes": "^6.24.1",
-        "babel-preset-env": "^1.6.0",
-        "babel-preset-react": "^6.24.1",
-        "electron-forge": "^4.1.2",
-        "electron-prebuilt-compile": "1.7.8"
+  "name": "collections-viewer-app",
+  "productName": "collections-viewer-app",
+  "version": "1.0.0",
+  "description": "Touchscreen application built in electron, used to access and display online collections.",
+  "main": "src/index.js",
+  "scripts": {
+    "debug": "set DEBUG=electron-compile:*,-babel && npm run start",
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "eslint src/**/*.js"
+  },
+  "keywords": [],
+  "author": "Michael Mason <mmason@museum.vic.gov.au>",
+  "license": "MIT",
+  "config": {
+    "forge": {
+      "make_targets": {
+        "win32": [
+          "squirrel"
+        ],
+        "darwin": [
+          "zip"
+        ],
+        "linux": [
+          "deb",
+          "rpm"
+        ]
+      },
+      "electronPackagerConfig": {
+        "packageManager": "yarn"
+      },
+      "electronWinstallerConfig": {
+        "name": "collections_viewer_app"
+      },
+      "electronInstallerDebian": {},
+      "electronInstallerRedhat": {},
+      "github_repository": {
+        "owner": "",
+        "name": ""
+      },
+      "windowsStoreConfig": {
+        "packageName": "",
+        "name": "collectionsviewerapp"
+      }
     }
+  },
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "electron-compile": "^6.4.2",
+    "electron-devtools-installer": "^2.1.0",
+    "electron-squirrel-startup": "^1.0.0",
+    "prop-types": "^15.6.0",
+    "react": "^15.4.1",
+    "react-autobind": "^1.0.6",
+    "react-dom": "^15.4.1",
+    "react-hot-loader": "^3.0.0-beta.6",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "redux-logger": "^3.0.6",
+    "redux-saga": "^0.15.6"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.0.1",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-plugin-transform-es2015-classes": "^6.24.1",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-react": "^6.24.1",
+    "electron-forge": "^4.1.2",
+    "electron-prebuilt-compile": "1.7.8",
+    "eslint": "^4.8.0",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-plugin-import": "2.7.0",
+    "eslint-plugin-jsx-a11y": "5.1.1",
+    "eslint-plugin-react": "7.1.0"
+  }
 }
