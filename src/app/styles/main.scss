@@ -20,13 +20,18 @@ body {
 .object-grid {
   position: relative;
   width: 1872px;
-  margin-left: 24px;
+  margin: 24px 0 24px 24px;
+  visibility: hidden;
+
+  &.loaded {
+    visibility: visible;
+  }
 
   .grid-sizer {
     width: 20%;
   }
 
-  .object-item {
+  .grid-item {
     width: 20%;
     box-sizing: border-box;
     padding: 24px;
