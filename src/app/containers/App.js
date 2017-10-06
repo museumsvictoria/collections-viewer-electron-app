@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as systemActions from '../actions/system';
+import ObjectGrid from './ObjectGrid';
 
 class App extends Component {
   render() {
     return (
       <div>
-        <h1>It Works!</h1>
+        <ObjectGrid />
       </div>
     );
   }

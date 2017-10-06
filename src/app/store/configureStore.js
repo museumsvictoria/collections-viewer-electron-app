@@ -5,7 +5,7 @@ import 'regenerator-runtime/runtime';
 import rootReducer from '../reducers/rootReducer';
 import rootSaga from '../sagas';
 
-export default function configureStore(initialState = {}) {
+export default function configureStore() {
   const sagaMiddleware = createSagaMiddleware();
 
   const middleware = [
@@ -19,7 +19,7 @@ export default function configureStore(initialState = {}) {
     applyMiddleware(...middleware),
   ];
 
-  const store = createStore(rootReducer, initialState, compose(...enhanced));
+  const store = createStore(rootReducer, compose(...enhanced));
 
   sagaMiddleware.run(rootSaga);
 
