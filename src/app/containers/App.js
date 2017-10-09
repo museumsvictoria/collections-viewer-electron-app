@@ -4,12 +4,14 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as systemActions from '../actions/system';
 import ObjectGrid from './ObjectGrid';
+import ObjectModal from './ObjectModal';
 
 class App extends Component {
   render() {
     return (
       <div>
         <ObjectGrid />
+        <ObjectModal />
       </div>
     );
   }
