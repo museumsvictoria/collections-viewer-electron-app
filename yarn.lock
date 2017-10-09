@@ -3949,6 +3949,10 @@ nib@^1.1.2:
   dependencies:
     stylus "0.54.5"
 
+nl2br@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/nl2br/-/nl2br-0.0.3.tgz#7778d6138979e051866ade0b3bf600f7c46324ee"
+
 node-abi@^2.0.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/node-abi/-/node-abi-2.1.1.tgz#c9cda256ec8aa99bcab2f6446db38af143338b2a"

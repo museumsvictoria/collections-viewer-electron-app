@@ -6,8 +6,10 @@ import CSSTransition from 'react-transition-group/CSSTransition';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
 import BodyClassName from 'react-body-classname';
 import autoBind from 'react-autobind';
+import nl2br from 'nl2br';
 import * as systemActions from '../actions/system';
 import CloseModalButton from '../components/CloseModalButton';
+import FullscreenButton from '../components/FullscreenButton';
 
 class ObjectModal extends Component {
   constructor(props) {
@@ -26,11 +28,14 @@ class ObjectModal extends Component {
               <div className="details" onClick={e => e.stopPropagation()}>
                 <CloseModalButton closeObject={actions.closeObject} />
                 <div className="image">
-                  <img src={activeObject.media.medium.uri} alt={activeObject.media.alternativeText} />
+                  <div className="container">
+                    <FullscreenButton closeObject={actions.closeObject} />
+                    <img src={activeObject.media.medium.uri} alt={activeObject.media.alternativeText} />
+                  </div>
                 </div>
                 <div className="text">
                   <h1>{activeObject.title}</h1>
-                  <div className="description">{activeObject.description}</div>
+                  <div className="description" dangerouslySetInnerHTML={{ __html: nl2br(activeObject.description) }} />
                 </div>
               </div>
             </div>
