@@ -9,7 +9,7 @@ import autoBind from 'react-autobind';
 import nl2br from 'nl2br';
 import * as systemActions from '../actions/system';
 import CloseModalButton from '../components/CloseModalButton';
-import FullscreenButton from '../components/FullscreenButton';
+import ObjectImage from '../components/ObjectImage';
 
 class ObjectModal extends Component {
   constructor(props) {
@@ -27,12 +27,7 @@ class ObjectModal extends Component {
             <div className="object-modal" onClick={actions.closeObject}>
               <div className="details" onClick={e => e.stopPropagation()}>
                 <CloseModalButton closeObject={actions.closeObject} />
-                <div className="image">
-                  <div className="container">
-                    <FullscreenButton closeObject={actions.closeObject} />
-                    <img src={activeObject.media.medium.uri} alt={activeObject.media.alternativeText} />
-                  </div>
-                </div>
+                <ObjectImage media={activeObject.media} />
                 <div className="text">
                   <h1>{activeObject.title}</h1>
                   <div className="description" dangerouslySetInnerHTML={{ __html: nl2br(activeObject.description) }} />

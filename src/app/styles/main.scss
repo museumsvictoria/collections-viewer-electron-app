@@ -152,6 +152,7 @@ body {
       align-items: center;
       justify-content: center;
       margin-left: 64px;
+      z-index: 100;
 
       .container {
         position: relative;
@@ -164,7 +165,7 @@ body {
         }
 
         img {
-          max-width: 100%;
+          max-width: 625px;
           max-height: 830px;
           display: block;
           box-shadow: 0 16px 32px 0 rgba(0, 0, 0, 0.16);
@@ -185,6 +186,7 @@ body {
       h1 {
         font-family: 'circular-medium';
         font-size: 40px;
+        font-weight: 500;
         line-height: 1.2;
         letter-spacing: -0.5px;
         color: #2c3d4d;
