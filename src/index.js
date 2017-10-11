@@ -34,7 +34,7 @@ const createWindow = async () => {
     width: 1920,
     height: 1080,
     frame: false,
-    // alwaysOnTop: true,
+    alwaysOnTop: true,
     resizable: false,
     show: false,
     backgroundColor: '#fff',

@@ -51,9 +51,9 @@ class ObjectGrid extends Component {
 
     return (
       <div className={classnames('object-grid', { loaded: allImagesLoaded })} ref={(objectGrid) => { this.objectGrid = objectGrid; }}>
-        <div className="grid-sizer" />
+        <div className="grid-sizer" ref={(el) => { this.gridSizerEl = el; }} />
         {objects && objects.map(object =>
-          <GridItem key={object.id} id={object.id} imageUri={object.media.medium.uri} alternativeText={object.media.medium.alternativeText} selectObject={actions.selectObject} />,
+          <GridItem key={object.id} id={object.id} media={object.media} minWidth={this.gridSizerEl.clientWidth} selectObject={actions.selectObject} />,
         )}
       </div>
     );
