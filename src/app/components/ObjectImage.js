@@ -4,8 +4,6 @@ import autoBind from 'react-autobind';
 import Transition from 'react-transition-group/Transition';
 import ImageExpandButton from '../components/ImageExpandButton';
 
-const collapsedMaxWidth = 625;
-const collapsedMaxHeight = 830;
 const expandedMaxWidth = document.documentElement.clientWidth - 80;
 const expandedMaxHeight = document.documentElement.clientHeight - 80;
 
@@ -13,6 +11,18 @@ export default class ObjectImage extends Component {
   constructor(props) {
     super(props);
     autoBind(this);
+
+    this.state = {
+      collapsedMaxHeight: 0,
+      collapsedMaxWidth: 0,
+    };
+  }
+
+  componentDidMount() {
+    this.setState({
+      collapsedMaxHeight: getComputedStyle(this.imageEl).getPropertyValue('max-height').match(/\d+/)[0],
+      collapsedMaxWidth: this.imageDivEl.clientWidth,
+    });
   }
 
   handleExit(elem) {
@@ -29,11 +39,11 @@ export default class ObjectImage extends Component {
 
   render() {
     const { media, toggleImageExpand, imageExpanded } = this.props;
-    const imageExpandButtonDisabled = media.medium.width <= collapsedMaxWidth && media.medium.height <= collapsedMaxHeight;
+    const imageExpandButtonDisabled = media.medium.width <= this.state.collapsedMaxWidth && media.medium.height <= this.state.collapsedMaxHeight;
 
     return (
       <Transition timeout={0} in={imageExpanded} onExit={this.handleExit} onEnter={this.handleEnter}>
-        <div className="image">
+        <div className="image" ref={(el) => { this.imageDivEl = el; }}>
           <div className="container" onClick={() => { if (!imageExpandButtonDisabled) toggleImageExpand(); }}>
             {!imageExpandButtonDisabled && <ImageExpandButton toggleImageExpand={toggleImageExpand} imageExpanded={imageExpanded} />}
             <img src={media.medium.uri} alt={media.alternativeText} ref={(el) => { this.imageEl = el; }} />
