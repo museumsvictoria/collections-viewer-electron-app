@@ -16,6 +16,10 @@ class ObjectModal extends Component {
   constructor(props) {
     super(props);
     autoBind(this);
+
+    this.state = {
+      transitioning: false,
+    };
   }
 
   render() {
@@ -24,7 +28,7 @@ class ObjectModal extends Component {
     return (
       <TransitionGroup>
         {activeObject &&
-        <CSSTransition classNames="fade" timeout={{ enter: 500, exit: 300 }} key={activeObject.id}>
+        <CSSTransition classNames="fade" timeout={{ enter: 400, exit: 300 }} key={activeObject.id} in={!!activeObject}>
           <BodyClassName className="object-selected">
             <div className={classnames('object-modal', { 'image-expanded': imageExpanded })} onClick={actions.closeObject}>
               <div className="details" onClick={e => e.stopPropagation()}>
