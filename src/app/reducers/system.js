@@ -2,11 +2,13 @@ import {
   RECIEVED_OBJECTS,
   SELECT_OBJECT,
   CLOSE_OBJECT,
+  TOGGLE_IMAGE_EXPAND,
 } from '../actions/system';
 
 const initialState = {
   objects: [],
   activeObjectId: null,
+  activeObjectImageExpanded: false,
 };
 
 export default function reducer(state = initialState, action) {
@@ -25,6 +27,12 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         activeObjectId: null,
+        activeObjectImageExpanded: false,
+      };
+    case TOGGLE_IMAGE_EXPAND:
+      return {
+        ...state,
+        activeObjectImageExpanded: !state.activeObjectImageExpanded,
       };
     default:
       return state;

@@ -108,6 +108,10 @@ body {
     transition: all 300ms ease-in;
   }
 
+  &.image-expanded .details .text {
+    overflow-y: hidden;
+  }
+
   .details {
     position: relative;
     width: 1440px;
@@ -157,7 +161,7 @@ body {
       .container {
         position: relative;
 
-        .button.fullscreen {
+        .button.image-expand {
           position: absolute;
           bottom: 0;
           left: 50%;

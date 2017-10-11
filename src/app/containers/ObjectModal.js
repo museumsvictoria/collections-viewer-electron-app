@@ -7,6 +7,7 @@ import TransitionGroup from 'react-transition-group/TransitionGroup';
 import BodyClassName from 'react-body-classname';
 import autoBind from 'react-autobind';
 import nl2br from 'nl2br';
+import classnames from 'classnames';
 import * as systemActions from '../actions/system';
 import CloseModalButton from '../components/CloseModalButton';
 import ObjectImage from '../components/ObjectImage';
@@ -18,16 +19,17 @@ class ObjectModal extends Component {
   }
 
   render() {
-    const { activeObject, actions } = this.props;
+    const { actions, activeObject, imageExpanded } = this.props;
+
     return (
       <TransitionGroup>
         {activeObject &&
         <CSSTransition classNames="fade" timeout={{ enter: 500, exit: 300 }} key={activeObject.id}>
           <BodyClassName className="object-selected">
-            <div className="object-modal" onClick={actions.closeObject}>
+            <div className={classnames('object-modal', { 'image-expanded': imageExpanded })} onClick={actions.closeObject}>
               <div className="details" onClick={e => e.stopPropagation()}>
                 <CloseModalButton closeObject={actions.closeObject} />
-                <ObjectImage media={activeObject.media} />
+                <ObjectImage media={activeObject.media} toggleImageExpand={actions.toggleImageExpand} imageExpanded={imageExpanded} />
                 <div className="text">
                   <h1>{activeObject.title}</h1>
                   <div className="description" dangerouslySetInnerHTML={{ __html: nl2br(activeObject.description) }} />
@@ -45,6 +47,7 @@ class ObjectModal extends Component {
 ObjectModal.propTypes = {
   actions: PropTypes.object.isRequired,
   activeObject: PropTypes.object,
+  imageExpanded: PropTypes.bool.isRequired,
 };
 
 ObjectModal.defaultProps = {
@@ -54,6 +57,7 @@ ObjectModal.defaultProps = {
 function mapStateToProps({ system }) {
   return {
     activeObject: system.objects.find(object => object.id === system.activeObjectId),
+    imageExpanded: system.activeObjectImageExpanded,
   };
 }
 

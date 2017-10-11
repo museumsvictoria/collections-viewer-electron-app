@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function FullscreenButton(props) {
-  const { toggleFullscreen, isFullscreen } = props;
+export default function ImageExpandButton(props) {
+  const { toggleImageExpand, imageExpanded } = props;
+
   return (
-    <div className="button fullscreen" onClick={toggleFullscreen}>
-      {isFullscreen ?
+    <div className="button image-expand" onClick={(e) => { e.stopPropagation(); toggleImageExpand(); }}>
+      {imageExpanded ?
         <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
           <path d="M0 0h24v24H0z" fill="none" />
           <path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z" />
@@ -20,7 +21,7 @@ export default function FullscreenButton(props) {
   );
 }
 
-FullscreenButton.propTypes = {
-  toggleFullscreen: PropTypes.func.isRequired,
-  isFullscreen: PropTypes.bool.isRequired,
+ImageExpandButton.propTypes = {
+  toggleImageExpand: PropTypes.func.isRequired,
+  imageExpanded: PropTypes.bool.isRequired,
 };
