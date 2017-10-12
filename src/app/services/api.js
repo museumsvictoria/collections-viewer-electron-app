@@ -6,4 +6,14 @@ export default class Api {
     return fetch(url)
       .then(response => ({ json: response.json(), link: parse(response.headers.get('link')) }));
   }
+
+  static cacheImage(resourceUrl) {
+    return new Promise((resolve) => {
+      const imageEl = new Image();
+      imageEl.src = resourceUrl;
+      imageEl.addEventListener('load', () => {
+        resolve();
+      });
+    });
+  }
 }

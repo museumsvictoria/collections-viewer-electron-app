@@ -19,12 +19,19 @@ function* fetchData() {
     }
   }
 
-  yield put(systemActions.recievedObjects(data.map(object => ({
+  data = data.map(object => ({
     id: object.id,
     title: object.objectName,
     media: object.media.filter(media => media.medium)[0],
     description: object.objectSummary,
-  }))));
+  }));
+
+  yield put(systemActions.recievedObjects(data));
+
+  // Preload the medium sized image used in object modal
+  for (let i = 0; i < data.length; i += 1) {
+    yield call(Api.cacheImage, data[i].media.medium.uri);
+  }
 }
 
 export default function* root() {

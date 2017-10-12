@@ -180,6 +180,7 @@ body {
           bottom: 0;
           left: 50%;
           margin:0 0 -24px -24px;
+          z-index: 1000;
         }
 
         img {
@@ -187,6 +188,7 @@ body {
           max-height: 830px;
           display: block;
           box-shadow: 0 16px 32px 0 rgba(0, 0, 0, 0.16);
+          transform: translate3d(0, 0, 0);
         }
       }
     }
