@@ -94,36 +94,81 @@ body {
     opacity: 0.01;
 
     .details {
+      opacity: 0.01;
       transform: scale(0.95) translate(0, 30px);
+
+      .image .container {
+        opacity: 0.01;
+        transform: scale(0.90);
+
+        img {
+          box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.16);
+        }
+      }
     }
   }
 
   &.fade-enter.fade-enter-active {
     opacity: 1;
-    transition: opacity 400ms linear;
+    transition: opacity 300ms linear;
 
     .details {
       transform: scale(1);
-      transition: transform 300ms cubic-bezier(0.215, 0.61, 0.355, 1);
+      opacity: 1;
+      transition: all 300ms cubic-bezier(0.215, 0.61, 0.355, 1) 250ms;
+
+      .image .container {
+        opacity: 1;
+        transition: all 300ms ease-out 500ms;
+        transform: scale(1);
+
+        img {
+          box-shadow: 0 16px 32px 0 rgba(0, 0, 0, 0.16);
+          transition: all 300ms ease-out 500ms;
+        }
+      }
     }
   }
 
   &.fade-exit {
     opacity: 1;
+
+    .details {
+      opacity: 1;
+
+      .image .container {
+        opacity: 1;
+      }
+    }
   }
 
   &.fade-exit.fade-exit-active {
     opacity: 0.01;
-    transition: all 400ms linear;
+    transition: all 300ms linear 200ms;
 
     .details {
+      opacity: 0.01;
       transform: scale(0.95) translate(0, 30px);
-      transition: transform 300ms cubic-bezier(0.55, 0.055, 0.675, 0.19);
+      transition: all 300ms cubic-bezier(0.55, 0.055, 0.675, 0.19);
     }
   }
 
-  &.image-expanded .details .text {
-    overflow-y: hidden;
+  &.image-expanded {
+    .details {
+      box-shadow: 17px 17px 0px 0px #b8bec7;
+
+      .button.close-modal svg {
+        opacity: 0.3;
+      }
+    }
+
+    .details .text {
+      overflow-y: hidden;
+
+      h1, .description{
+        color: #dadee2;
+      }
+    }
   }
 
   .details {
@@ -154,8 +199,8 @@ body {
       right: 64px;
       display: block;
       width: 625px;
-      height: 32px;
-      background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #ffffff);
+      height: 64px;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #fff 49%, #fff);
     }
 
     .button.close-modal {

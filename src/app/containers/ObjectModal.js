@@ -18,7 +18,7 @@ class ObjectModal extends Component {
     return (
       <TransitionGroup>
         {activeObject &&
-        <CSSTransition classNames="fade" timeout={400} key={activeObject.id} in={!!activeObject}>
+        <CSSTransition classNames="fade" timeout={{ enter: 800, exit: 500 }} key={activeObject.id} in={!!activeObject}>
           <BodyClassName className="object-selected">
             <div className={classnames('object-modal', { 'image-expanded': imageExpanded })} onClick={actions.closeObject}>
               <div className="details" onClick={e => e.stopPropagation()}>
