@@ -4,7 +4,7 @@ import * as systemActions from '../actions/system';
 
 function* fetchData() {
   let moreDataToFetch = true;
-  let dataUrl = 'https://collections.museumvictoria.com.au/api/search?collection=Victorian+Women+on+Farms+Gathering+Collection&hasimages=yes';
+  let dataUrl = 'https://collections.museumvictoria.com.au/api/search?classification=Clothing&collectingarea=clothing+%26+textiles&hasimages=yes&sort=date';
   let data = [];
 
   while (moreDataToFetch) {
