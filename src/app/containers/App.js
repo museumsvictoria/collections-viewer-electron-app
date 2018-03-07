@@ -21,6 +21,7 @@ class App extends Component {
 
   toggleIdle() {
     const { isIdle } = this.state;
+    const { system, actions } = this.props;
 
     if (!isIdle) {
       scrollIntoView(this.el, {
@@ -30,6 +31,8 @@ class App extends Component {
         },
         scrollLeft: false,
       });
+
+      if (system.activeObjectId) actions.closeObject();
     }
 
     this.setState({
@@ -50,8 +53,15 @@ class App extends Component {
 }
 
 App.propTypes = {
+  system: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired,
 };
+
+function mapStateToProps({ system }) {
+  return {
+    system,
+  };
+}
 
 function mapDispatchToProps(dispatch) {
   return {
@@ -60,6 +70,6 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 )(App);
