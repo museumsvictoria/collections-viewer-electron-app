@@ -30,7 +30,10 @@
         ]
       },
       "electronPackagerConfig": {
-        "packageManager": "yarn"
+        "packageManager": "yarn",
+        "afterExtract": [
+          "./build/afterExtract.js"
+        ]
       },
       "electronWinstallerConfig": {
         "name": "collections_viewer_app"

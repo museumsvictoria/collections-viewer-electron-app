@@ -4,16 +4,17 @@ import * as systemActions from '../actions/system';
 
 function* fetchData() {
   let moreDataToFetch = true;
-  let dataUrl = 'https://collections.museumvictoria.com.au/api/search?classification=Clothing&collectingarea=clothing+%26+textiles&hasimages=yes&sort=date';
   let data = [];
 
+  const config = JSON.parse(yield call(Api.readConfigFile));
+
   while (moreDataToFetch) {
-    const response = yield call(Api.getResponse, dataUrl);
+    const response = yield call(Api.getResponse, config.dataUrl);
     const newData = yield response.json;
     data = [...data, ...newData];
 
     if (response.link.next) {
-      dataUrl = response.link.next.url;
+      config.dataUrl = response.link.next.url;
     } else {
       moreDataToFetch = false;
     }
