@@ -1,8 +1,9 @@
 {
-  "name": "collections-viewer-app",
-  "productName": "collections-viewer-app",
+  "name": "collections-viewer-electron-app",
+  "productName": "collections-viewer-electron-app",
   "version": "1.0.0",
-  "description": "Touchscreen application built in electron, used to access and display online collections.",
+  "description":
+    "Touchscreen application built in electron, used to access and display online collections.",
   "main": "src/index.js",
   "scripts": {
     "debug": "set DEBUG=electron-compile:*,-babel && npm run start",
@@ -18,25 +19,16 @@
   "config": {
     "forge": {
       "make_targets": {
-        "win32": [
-          "squirrel"
-        ],
-        "darwin": [
-          "zip"
-        ],
-        "linux": [
-          "deb",
-          "rpm"
-        ]
+        "win32": ["squirrel"],
+        "darwin": ["zip"],
+        "linux": ["deb", "rpm"]
       },
       "electronPackagerConfig": {
         "packageManager": "yarn",
-        "afterExtract": [
-          "./build/afterExtract.js"
-        ]
+        "afterExtract": ["./build/afterExtract.js"]
       },
       "electronWinstallerConfig": {
-        "name": "collections_viewer_app"
+        "name": "collections_viewer_electron_app"
       },
       "electronInstallerDebian": {},
       "electronInstallerRedhat": {},
@@ -46,7 +38,7 @@
       },
       "windowsStoreConfig": {
         "packageName": "",
-        "name": "collectionsviewerapp"
+        "name": "collectionsviewerelectronapp"
       }
     }
   },
