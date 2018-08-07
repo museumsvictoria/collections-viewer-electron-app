@@ -1,15 +1,20 @@
 import fs from 'fs';
 import path from 'path';
 import { remote } from 'electron';
-import fetch from 'isomorphic-fetch';
+import fetch from 'fetch-retry';
 import parse from 'parse-link-header';
 
 const isDevMode = process.execPath.match(/[\\/]electron/);
 
 export default class Api {
   static getResponse(url) {
-    return fetch(url)
-      .then(response => ({ json: response.json(), link: parse(response.headers.get('link')) }));
+    return fetch(url, {
+      retries: 5,
+      retryDelay: 2000,
+    }).then(response => ({
+      json: response.json(),
+      link: parse(response.headers.get('link')),
+    }));
   }
 
   static cacheImage(resourceUrl) {
@@ -24,9 +29,14 @@ export default class Api {
 
   static readConfigFile() {
     return new Promise((resolve, reject) => {
-      const configFilePath = isDevMode ? './config.json' : `${path.dirname(remote.app.getPath('exe'))}/config.json`;
+      const configFilePath = isDevMode
+        ? './config.json'
+        : `${path.dirname(remote.app.getPath('exe'))}/config.json`;
 
-      fs.readFile(configFilePath, (err, data) => (err ? reject(err) : resolve(data)));
+      fs.readFile(
+        configFilePath,
+        (err, data) => (err ? reject(err) : resolve(data)),
+      );
     });
   }
 }

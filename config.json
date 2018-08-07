@@ -1,3 +1,4 @@
 {
-  "dataUrl" : "https://collections.museumvictoria.com.au/api/search?classification=Clothing&collectingarea=clothing+%26+textiles&hasimages=yes&sort=date"
+  "dataUrl":
+    "https://collections.museumvictoria.com.au/api/search?collection=Royal+Exhibition+Building+Collection&hasimages=yes&ondisplay=no&collectingarea=royal+exhibition+building&itemtype=object"
 }
