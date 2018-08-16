@@ -1,6 +1,7 @@
 import { fork, call, put } from 'redux-saga/effects';
 import Api from '../services/api';
 import * as systemActions from '../actions/system';
+import { createDescription } from '../services/misc';
 
 function* fetchData() {
   let moreDataToFetch = true;
@@ -22,9 +23,9 @@ function* fetchData() {
 
   data = data.map(object => ({
     id: object.id,
-    title: object.objectName,
+    title: object.displayTitle,
     media: object.media.filter(media => media.medium)[0],
-    description: object.objectSummary,
+    description: createDescription(object),
   }));
 
   yield put(systemActions.recievedObjects(data));

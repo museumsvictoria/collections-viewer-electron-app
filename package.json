@@ -1,7 +1,7 @@
 {
   "name": "collections-viewer-electron-app",
   "productName": "collections-viewer-electron-app",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Touchscreen application built in electron, used to access and display online collections.",
   "main": "src/index.js",
   "scripts": {

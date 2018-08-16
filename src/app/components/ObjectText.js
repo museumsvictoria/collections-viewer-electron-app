@@ -7,8 +7,11 @@ export default function ObjectText(props) {
 
   return (
     <div className="text">
-      <h1>{title}</h1>
-      <div className="description" dangerouslySetInnerHTML={{ __html: nl2br(description) }} />
+      <h1 dangerouslySetInnerHTML={{ __html: title }} />
+      <div
+        className="description"
+        dangerouslySetInnerHTML={{ __html: nl2br(description) }}
+      />
     </div>
   );
 }
