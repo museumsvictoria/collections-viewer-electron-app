@@ -14,7 +14,7 @@ function* fetchData() {
     const newData = yield response.json;
     data = [...data, ...newData];
 
-    if (response.link.next) {
+    if (response.link && response.link.next) {
       config.dataUrl = response.link.next.url;
     } else {
       moreDataToFetch = false;
