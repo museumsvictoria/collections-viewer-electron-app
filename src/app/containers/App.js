@@ -6,7 +6,7 @@ import autoBind from 'react-autobind';
 import IdleTimer from 'react-idle-timer';
 import scrollIntoView from 'scroll-into-view';
 import * as systemActions from '../actions/system';
-import ObjectGrid from './ObjectGrid';
+import ThemeGrid from './ThemeGrid';
 import ObjectModal from './ObjectModal';
 
 class App extends Component {
@@ -44,7 +44,7 @@ class App extends Component {
     return (
       <IdleTimer timeout={4 * 60 * 1000} idleAction={this.toggleIdle} activeAction={this.toggleIdle}>
         <div ref={(el) => { this.el = el; }}>
-          <ObjectGrid />
+          <ThemeGrid />
           <ObjectModal />
         </div>
       </IdleTimer>

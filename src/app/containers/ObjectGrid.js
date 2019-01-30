@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
 import autoBind from 'react-autobind';
 import Isotope from 'isotope-layout';
 import imagesLoaded from 'imagesloaded';
 import classnames from 'classnames';
-import * as systemActions from '../actions/system';
 import GridItem from '../components/GridItem';
 
-class ObjectGrid extends Component {
+export default class ObjectGrid extends Component {
   constructor(props) {
     super(props);
     autoBind(this);
@@ -28,16 +25,9 @@ class ObjectGrid extends Component {
       },
       transitionDuration: 0,
     });
-  }
 
-  componentDidUpdate(prevProps) {
-    // Add objects to isotope and kick off imagesloaded once we recieve our API data
-    if (this.props.objects && prevProps.objects.length === 0) {
-      this.iso.reloadItems();
-
-      this.imagesLoaded = imagesLoaded('.object-grid');
-      this.imagesLoaded.on('done', this.allImagesLoaded);
-    }
+    this.imagesLoaded = imagesLoaded('.object-grid');
+    this.imagesLoaded.on('done', this.allImagesLoaded);
   }
 
   allImagesLoaded() {
@@ -46,14 +36,14 @@ class ObjectGrid extends Component {
   }
 
   render() {
-    const { objects, actions } = this.props;
+    const { items, selectObject } = this.props;
     const { allImagesLoaded } = this.state;
 
     return (
       <div className={classnames('object-grid', { loaded: allImagesLoaded })} ref={(objectGrid) => { this.objectGrid = objectGrid; }}>
         <div className="grid-sizer" ref={(el) => { this.gridSizerEl = el; }} />
-        {objects && objects.map(object =>
-          <GridItem key={object.id} id={object.id} media={object.media} minWidth={this.gridSizerEl.clientWidth} selectObject={actions.selectObject} />,
+        {items && items.map(item =>
+          <GridItem key={item.id} id={item.id} media={item.media} minWidth={this.gridSizerEl ? this.gridSizerEl.clientWidth : null} selectObject={selectObject} />,
         )}
       </div>
     );
@@ -61,23 +51,6 @@ class ObjectGrid extends Component {
 }
 
 ObjectGrid.propTypes = {
-  objects: PropTypes.array.isRequired,
-  actions: PropTypes.object.isRequired,
+  items: PropTypes.array.isRequired,
+  selectObject: PropTypes.func.isRequired,
 };
-
-function mapStateToProps({ system }) {
-  return {
-    objects: system.objects,
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(systemActions, dispatch),
-  };
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(ObjectGrid);

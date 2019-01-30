@@ -68,6 +68,7 @@ app.on('ready', () => {
   localShortcut.register('Ctrl+Shift+I', () => {
     if (mainWindow) {
       mainWindow.webContents.toggleDevTools();
+      mainWindow.setAlwaysOnTop(false);
     }
   });
 

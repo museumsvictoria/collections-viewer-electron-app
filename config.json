@@ -1,4 +1,8 @@
 {
-  "dataUrl":
-    "https://collections.museumvictoria.com.au/api/search?hasimages=yes&recordtype=specimen&collectingarea=vertebrate+palaeontology&itemtype=specimen&displaylocation=melbourne+museum&query=P*+-\"P+221080.2\"++-\"P+221080.3\"+-\"P+221080.4\"+-\"P+221080.5\"+-\"P+208014.2\"+-\"P+208014.3\"+-\"P+221807.2\"+-\"P+221807.3\"+-\"P+221807.4\""
+  "dataUrls": [
+    "https://collections.museumvictoria.com.au/api/articles/16633",
+    "https://collections.museumvictoria.com.au/api/articles/16634",
+    "https://collections.museumvictoria.com.au/api/articles/16635",
+    "https://collections.museumvictoria.com.au/api/articles/16636"
+  ]
 }

@@ -23,6 +23,10 @@ export default function GridItem(props) {
 GridItem.propTypes = {
   id: PropTypes.string.isRequired,
   media: PropTypes.object.isRequired,
-  minWidth: PropTypes.number.isRequired,
+  minWidth: PropTypes.number,
   selectObject: PropTypes.func.isRequired,
+};
+
+GridItem.defaultProps = {
+  minWidth: 375,
 };

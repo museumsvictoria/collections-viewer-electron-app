@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import autoBind from 'react-autobind';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import CSSTransition from 'react-transition-group/CSSTransition';
@@ -12,8 +13,29 @@ import ObjectImage from '../components/ObjectImage';
 import ObjectText from '../components/ObjectText';
 
 class ObjectModal extends Component {
+  constructor(props) {
+    super(props);
+    autoBind(this);
+  }
+
+  findActiveObject() {
+    const { objects, activeObjectId } = this.props;
+
+    for (const theme of objects) {
+      const foundItem = theme.items.find(item => item.id === activeObjectId);
+
+      if (foundItem) {
+        return foundItem;
+      }
+    }
+
+    return null;
+  }
+
   render() {
-    const { actions, activeObject, imageExpanded } = this.props;
+    const { actions, imageExpanded } = this.props;
+
+    const activeObject = this.findActiveObject();
 
     return (
       <TransitionGroup>
@@ -37,17 +59,19 @@ class ObjectModal extends Component {
 
 ObjectModal.propTypes = {
   actions: PropTypes.object.isRequired,
-  activeObject: PropTypes.object,
+  objects: PropTypes.array.isRequired,
+  activeObjectId: PropTypes.string,
   imageExpanded: PropTypes.bool.isRequired,
 };
 
 ObjectModal.defaultProps = {
-  activeObject: null,
+  activeObjectId: null,
 };
 
 function mapStateToProps({ system }) {
   return {
-    activeObject: system.objects.find(object => object.id === system.activeObjectId),
+    objects: system.objects,
+    activeObjectId: system.activeObjectId,
     imageExpanded: system.activeObjectImageExpanded,
   };
 }
