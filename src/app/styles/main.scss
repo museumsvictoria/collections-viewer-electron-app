@@ -36,7 +36,9 @@ body {
     margin: 48px 48px 0 48px;
     font-family: monarcha, serif;
     font-weight: 700;
-    font-size: 38px;
+    font-size: 68px;
+    text-align: center;
+    color: #3d7642;
   }
 }
 
@@ -82,7 +84,7 @@ body {
   svg {
     height: 30px;
     width: 30px;
-    fill: #0099fa;
+    fill: #6d9a5b;
   }
 }
 
@@ -185,7 +187,7 @@ body {
     width: 1440px;
     height: 600px;
     background: #fff;
-    box-shadow: 17px 17px 0px 0px #16304d;
+    box-shadow: 17px 17px 0px 0px #3d7642;
     display: flex;
     flex-direction: row;
 
